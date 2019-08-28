@@ -69,9 +69,6 @@ int pds_open( char *repo_name , int rec_size)
 int put_rec_by_key( int key ,void *rec )
 {
     int status = PDS_ADD_FAILED;
-    if(repo_handle.repo_status != PDS_REPO_OPEN)
-        return status;
-
     struct PDS_NdxInfo *index = (struct PDS_NdxInfo *)malloc(sizeof(struct PDS_NdxInfo));
     long int offset = ftell(repo_handle.pds_data_fp);
 

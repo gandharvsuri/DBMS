@@ -110,7 +110,6 @@ int pds_close()
         return status;
 
     if(!fp_index)
-        printf("HAAHAHAHAH\n");
     repo_handle.repo_status = PDS_REPO_CLOSED;
     fclose(fp_data);
     fclose(fp_index);

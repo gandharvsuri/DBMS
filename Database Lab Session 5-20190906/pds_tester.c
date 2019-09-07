@@ -71,7 +71,7 @@ void process_line( char *test_case )
 		testContact.contact_id = contact_id;
 		sprintf(testContact.contact_name,"Name-of-%d",contact_id);
 		sprintf(testContact.phone,"Phone-of-%d",contact_id);
-		status = add_contact( &testContact );
+		status = put_rec_by_key( contact_id, &testContact );
 		if(status == PDS_SUCCESS)
 			status = CONTACT_SUCCESS;
 		else
@@ -84,6 +84,29 @@ void process_line( char *test_case )
 			TREPORT("FAIL", info);
 		}
 	}
+	else if( !strcmp(command,"NDX_MODIFY") ){
+		if( !strcmp(param2,"0") )
+			expected_status = CONTACT_SUCCESS;
+		else
+			expected_status = CONTACT_FAILURE;
+
+		sscanf(param1, "%d", &contact_id);
+		testContact.contact_id = contact_id;
+		sprintf(testContact.contact_name,"Modified-Name-of-%d",contact_id);
+		sprintf(testContact.phone,"Modified-Phone-of-%d",contact_id);
+		status = modify_rec_by_key( contact_id, &testContact );
+		if(status == PDS_SUCCESS)
+			status = CONTACT_SUCCESS;
+		else
+			status = CONTACT_FAILURE;
+		if( status == expected_status ){
+			TREPORT("PASS", "");
+		}
+		else{
+			sprintf(info,"modify_rec_by_key returned status %d",status);
+			TREPORT("FAIL", info);
+		}
+	}
 	else if( !strcmp(command,"NDX_SEARCH") ){
 		if( strcmp(param2,"-1") )
 			expected_status = CONTACT_SUCCESS;
@@ -92,7 +115,7 @@ void process_line( char *test_case )
 
 		sscanf(param1, "%d", &contact_id);
 		testContact.contact_id = -1;
-		status = search_contact( contact_id, &testContact );
+		status = get_rec_by_ndx_key( contact_id, &testContact );
 		if(status == PDS_SUCCESS)
 			status = CONTACT_SUCCESS;
 		else
@@ -107,8 +130,8 @@ void process_line( char *test_case )
 				sprintf(expected_name,"Name-of-%d",contact_id);
 				sprintf(expected_phone,"Phone-of-%d",contact_id);
 				if (testContact.contact_id == contact_id && 
-					strcmp(testContact.contact_name,expected_name) == 0 &&
-					strcmp(testContact.phone,expected_phone) == 0){
+					strstr(testContact.contact_name,expected_name) != NULL &&
+					strstr(testContact.phone,expected_phone) != NULL){
 						TREPORT("PASS", "");
 				}
 				else{
@@ -151,8 +174,8 @@ void process_line( char *test_case )
 			sprintf(expected_phone,"Phone-of-%d",contact_id);
 			if( expected_status == 0 ){
 				if (testContact.contact_id == contact_id && 
-					strcmp(testContact.contact_name, expected_name) == 0 &&
-					strcmp(testContact.phone, expected_phone) == 0 ){
+					strstr(testContact.contact_name, expected_name) != NULL &&
+					strstr(testContact.phone, expected_phone) != NULL ){
 						if( expected_io == actual_io ){
 							TREPORT("PASS", "");
 						}

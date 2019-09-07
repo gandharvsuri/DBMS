@@ -4,7 +4,7 @@
 #include "pds.h"
 #include "contact.h"
 
-int main( int argc, char *argv[] )
+main( int argc, char *argv[] )
 {
 	char *datafile; 
 	char *repo_name; 

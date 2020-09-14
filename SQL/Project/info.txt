@@ -1,0 +1,30 @@
+use case diagram
+
+use case id
+use case name
+use case description
+actors
+flow
+	normal
+	Alternative
+	exceptional
+
+- 2 actors
+- 5 use cases
+
+Garage
+
+- Add item
+- Remove Item
+- Find expired items
+- Add to bill
+- But or Rent
+- Sell
+- Evaluate
+
+
+Actors
+- Shopkeeper
+- Buyer
+- Seller
+

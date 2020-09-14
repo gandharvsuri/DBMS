@@ -1,0 +1,2 @@
+all:
+	gcc Item.c bst.c pds.c Tester.c -w 

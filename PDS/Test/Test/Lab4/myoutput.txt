@@ -1,0 +1,84 @@
+Test case: OPEN mydemo 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-1011 25
+status: 0
+Status FAIL: Num I/O not matching for 1011... Expected:25 Got:243
+
+
+Test case: NON_NDX_SEARCH Phone-of-1614 889
+status: 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-9952 411
+status: 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-4687 126
+status: 0
+Status PASS: 
+
+Test case: NDX_SEARCH 1014 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-1764 768
+status: 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-9734 772
+status: 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-13000 2
+status: 3
+Status FAIL: search key: 9734; Got status 1
+
+Test case: NON_NDX_SEARCH Phone-of-1764 -1
+status: 0
+Status FAIL: search key: 9734; Got status 0
+
+Test case: NDX_SEARCH 2247 0
+Status PASS: 
+
+Test case: NDX_SEARCH 567 1
+Status PASS: 
+
+Test case: CLOSE 0
+Status PASS: 
+
+Test case: OPEN mydemo 0
+Status PASS: 
+
+Test case: NDX_SEARCH 12000 1
+Status FAIL: search key: 12000; Got status 0
+
+Test case: STORE 12000 0
+Status PASS: 
+
+Test case: NDX_SEARCH 12000 0
+Status PASS: 
+
+Test case: CLOSE 0
+Status PASS: 
+
+Test case: CLOSE 1
+Status PASS: 
+
+Test case: OPEN mydemo 0
+Status PASS: 
+
+Test case: OPEN mydemo 1
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-4687 12
+status: 0
+Status FAIL: Num I/O not matching for 4687... Expected:12 Got:126
+
+
+Test case: NON_NDX_SEARCH Phone-of-9036 35
+status: 0
+Status PASS: 
+
+Test case: CLOSE 0
+Status PASS: 
+

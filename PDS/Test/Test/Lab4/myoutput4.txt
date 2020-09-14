@@ -1,0 +1,22 @@
+Test case: CLOSE 1
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-6725 241
+Status FAIL: search key: 0; Got status 1
+
+Test case: OPEN mydemo 0
+Status PASS: 
+
+Test case: CLOSE 0
+Status PASS: 
+
+Test case: NDX_SEARCH 1400 1
+Status PASS: 
+
+Test case: OPEN mydemo 0
+Status PASS: 
+
+Test case: NON_NDX_SEARCH Phone-of-6725 241
+status: 10
+Status PASS: 
+

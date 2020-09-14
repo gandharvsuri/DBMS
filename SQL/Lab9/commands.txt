@@ -1,0 +1,93 @@
+#PI
+    select Fname, Lname
+    from EMPLOYEE;
+
+    ## alias
+        # coloumn alias
+    select Fname AS 'First Name',   
+           Lname AS 'Last name'
+    from EMPLOYEE e;
+        #table alias
+
+    #functions
+        #concat
+    select concat(Fname,'',Lname)   
+    from EMPLOYEE;
+
+    # Where clause
+    select pname
+    from project
+    where plocation = 'Sugarland'
+
+    #Compaound conditions
+    select pname
+    from project
+    where plocation = 'sugarland' or dnum = 5;
+
+    #Is NULL
+    select fname
+    from employee 
+    where super_ssn is NULL;
+
+    # Is NOT NULL
+    select fname 
+    from employee 
+    where super_ssn is not NULL;
+
+    # LIKE
+        #Starting from 's'
+    select * 
+    from project 
+    where plocation LIKE "s%";
+
+    #Aggregrate functions
+    select min(salary), max(salary)
+    from employee;
+
+    #Count function
+        #(a) all rows
+    select count(*)
+    from employee;
+        #(b) non NULL values
+    select count(ssn)
+    from employee;
+        #(c)
+    select count(mgr_ssn)
+    from employee;
+
+    #Set Membership
+        #(a)
+    select fname
+    from employee
+    where dnum IN (4,1);
+        #(b)
+    select fname
+    from employee
+    where ssn IN (select essn from dependent);
+
+    Q: all employees with salary > avg(Research department employees)
+    select *
+    from employee
+    where salary > (select avg(salary) from employee where dno = 5);
+
+    # Grouped Aggregration
+    select dno, max(salary)
+    from employee
+    group by dno; 
+
+    Q: Gender-wise salary
+
+    Q: Project-wise sum of hours in works_on
+
+    Q: Report of number of departments in each locations (Dept_locations)
+    select dlocation , count(dnumber) from dept_locations group by dlocation;
+
+    Q: Gender-wise count of employees in dno = 5
+    select sex, count(*) from employee where dno = 5 group by sex;
+
+    #Having
+        Q: Filtered grouped Aggregrate select dno, sum(salary) from employee group by dno having sum(salary) > 10000
+
+
+    Q: Display the total salary earned by employees who work in "large projects" => a project is considered "large" if the total hours is greater than 35.
+

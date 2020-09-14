@@ -1,0 +1,153 @@
+Q1
+    a. Retrieve all columns and all rows from EMPLOYEE table using wild-card column
+    name
+    select *
+    from employee;    
+
+    b. Retrieve all columns and all rows from EMPLOYEE table using explicit column names
+    #####
+
+
+Q2
+    a. Retrieve all Essn values from WORKS_ON (how many rows are there?)
+    select essn 
+    from works_on;
+    (16 rows)
+
+    b. Retrieve DISTINCT Essn values from WORKS_ON (how many rows are there?)
+    select distinct essn
+    from works_on;
+    (8 rows)
+
+    c. Retrieve DISTINCT Essn, Pno values from WORKS_ON (how many rows are there?)
+    select distinct essn, pno 
+    from works_on;
+
+Q3
+    a. Display essn, monthly salary of all employees (use column aliases – SSN, Monthly
+    Salary)
+    select ssn AS 'SSN',
+           salary/12 AS 'Monthaly Salary'
+    from employee;
+
+    b. Display ssn, full name of employee and Bdate of all employees (use column aliases –
+    SSN, Full Name, Date of Birth)
+    select ssn AS 'SSN',
+           concat(fname, ' ' , lname) AS 'Full Name',
+           bdate as 'Date of Birth'
+    from employee;
+
+Q4
+    a. Simple condition: Essn of those working in project whose Pno is 2
+    select essn
+    from works_on
+    where pno = 2;
+
+    b. Compound Condition: All details of male dependents of essn 333445555
+    select *
+    from employee
+    where (ssn = 333445555 and sex = 'M');
+
+    c. Compound Condition: Full names of employees who belong to Dno 5 OR Dno 1
+    select concat(fname, ' ' , lname) AS 'Full Name'
+    from employee
+    where (dno = 5 or dno = 1);
+
+Q5
+    a. Essn and annual salary details of all employees whose salary is in the range [30,000 –
+    50,000]. Does SQL do “closed interval” or “open interval”?
+    select ssn , salary
+    from employee
+    where salary BETWEEN 30000 and 50000;
+    (closed interval)
+
+    b. Essn and monthly salary details of all employees whose MONTHLY salary is in the
+    range [3,000 – 4,000] (Note: Assume the given salary is ANNUAL salary)
+    select ssn , salary/12
+    from employee
+    where salary/12 BETWEEN 3000 and 4000;
+    
+Q6
+    a. All employee SSN whose supervisors are in the set (333445555, 987654321)
+    select ssn 
+    from employee
+    where ssn IN (333445555, 987654321);
+
+    b. All employee SSN who are NOT supervised by those in the set (333445555,987654321)
+    select ssn 
+    from employee
+    where ssn NOT IN (333445555, 987654321);
+
+Q7
+    a. All Pnames of projects that begin with the string "Product"
+    select pname 
+    from project 
+    where pname LIKE "Product%";
+
+Q8
+    a. Employee ssn who does NOT have a supervisor (NULL value for super_ssn)
+    select ssn
+    from employee
+    where super_ssn is NULL;
+
+    b. SSN of employee who work in Pno 20 and has Hours value as NULL
+    select essn
+    from works_on
+    where Pno = 20 and hours is NULL;
+
+    c. Employee ssn who have a supervisorassigned (no NULL value for super_ssn)
+    select ssn, Dno , Salary/12
+    from employee   
+    where super_ssn is not NULL;
+
+Q9
+    a.
+    select ssn ,concat(fname, ' ', lname)  from employee order by salary asc;
+
+    b.
+    select ssn ,concat(fname, ' ', lname)  from employee order by salary desc;
+
+    c.
+    
+
+    
+
+
+
+
+
+
+
+Q13
+    a. Essn of employees who are working on project named ProductX
+    select ssn
+    from employee
+    where ssn in (select essn  
+                 from works_on 
+                 where pno in (select pnumber 
+                            from project 
+                            where pname = 'ProductX'));
+
+    b. Full name of employees who are working a minimum of 10 hours in specific projects
+    select concat(fname, ' ', lname)
+    from employee 
+    where ssn in (select essn 
+                from works_on 
+                where hours >= 10);
+
+    c. Full name of employees whose average project hours is at least 10 hours
+    select concat(fname, ' ', lname)
+    from employee 
+    where ssn in (select essn
+                from works_on 
+                group by essn
+                having avg(hours) >=10);
+
+    d. Essn of employees who are working in projects whose name begins with "Product"
+    select DISTINCT essn 
+    from works_on 
+    where pno in (select pnumber 
+                from project
+                where pname LIKE "Product%");
+
+    

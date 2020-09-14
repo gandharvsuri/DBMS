@@ -1,0 +1,73 @@
+line:OPEN mydemo 0
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-1011 25
+Status FAIL: Num I/O not matching for 1011... Expected:25 Got:243
+
+
+line:NON_NDX_SEARCH Phone-of-1614 889
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-9952 411
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-4687 126
+Status PASS: 
+
+line:NDX_SEARCH 1014 0
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-1764 768
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-9734 772
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-13000 2
+Status FAIL: search key: 9734; Got status 1
+
+line:NON_NDX_SEARCH Phone-of-1764 -1
+Status FAIL: search key: 9734; Got status 0
+
+line:NDX_SEARCH 2247 0
+Status PASS: 
+
+line:NDX_SEARCH 567 1
+Status PASS: 
+
+line:CLOSE 0
+Status PASS: 
+
+line:OPEN mydemo 0
+Status PASS: 
+
+line:NDX_SEARCH 12000 1
+Status PASS: 
+
+line:STORE 12000 0
+Status PASS: 
+
+line:NDX_SEARCH 12000 0
+Status PASS: 
+
+line:CLOSE 0
+Status PASS: 
+
+line:CLOSE 1
+Status PASS: 
+
+line:OPEN mydemo 0
+Status PASS: 
+
+line:OPEN mydemo 1
+Status PASS: 
+
+line:NON_NDX_SEARCH Phone-of-4687 12
+Status FAIL: Num I/O not matching for 4687... Expected:12 Got:126
+
+
+line:NON_NDX_SEARCH Phone-of-9036 35
+Status PASS: 
+
+line:CLOSE 0
+Status PASS: 
